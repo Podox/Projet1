@@ -1,0 +1,59 @@
+﻿@model Projet1.Models.Facture
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Facture</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NumeroFacture" class="control-label"></label>
+                <input asp-for="NumeroFacture" class="form-control" />
+                <span asp-validation-for="NumeroFacture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateEmission" class="control-label"></label>
+                <input asp-for="DateEmission" class="form-control" />
+                <span asp-validation-for="DateEmission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateEcheance" class="control-label"></label>
+                <input asp-for="DateEcheance" class="form-control" />
+                <span asp-validation-for="DateEcheance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontantTotal" class="control-label"></label>
+                <input asp-for="MontantTotal" class="form-control" />
+                <span asp-validation-for="MontantTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EstPayee" /> @Html.DisplayNameFor(model => model.EstPayee)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntrepriseAssocieeId" class="control-label"></label>
+                <select asp-for="EntrepriseAssocieeId" class="form-control" asp-items="ViewBag.EntrepriseAssocieeId"></select>
+                <span asp-validation-for="EntrepriseAssocieeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
