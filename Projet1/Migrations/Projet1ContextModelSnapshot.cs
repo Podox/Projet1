@@ -71,7 +71,7 @@ namespace Projet1.Migrations
                     b.ToTable("Document");
                 });
 
-            modelBuilder.Entity("Projet1.Models.Domiciliation", b =>
+            modelBuilder.Entity("Projet1.Models.Domiciliatione", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,28 +79,22 @@ namespace Projet1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AdresseDomiciliationId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateDebut")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateFin")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DocumentId")
+                    b.Property<int>("idAdresseDomiciliation")
                         .HasColumnType("int");
 
-                    b.Property<int>("UtilisateurId")
+                    b.Property<int>("idDocument")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idUtilisateur")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdresseDomiciliationId");
-
-                    b.HasIndex("DocumentId");
-
-                    b.HasIndex("UtilisateurId");
 
                     b.ToTable("Domiciliation");
                 });
@@ -199,33 +193,6 @@ namespace Projet1.Migrations
                     b.HasIndex("EntrepriseUId");
 
                     b.ToTable("Utilisateur");
-                });
-
-            modelBuilder.Entity("Projet1.Models.Domiciliation", b =>
-                {
-                    b.HasOne("Projet1.Models.Adresse", "AdresseDomiciliation")
-                        .WithMany()
-                        .HasForeignKey("AdresseDomiciliationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Projet1.Models.Document", "Document")
-                        .WithMany()
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Projet1.Models.Utilisateur", "Utilisateur")
-                        .WithMany()
-                        .HasForeignKey("UtilisateurId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AdresseDomiciliation");
-
-                    b.Navigation("Document");
-
-                    b.Navigation("Utilisateur");
                 });
 
             modelBuilder.Entity("Projet1.Models.Entreprise", b =>

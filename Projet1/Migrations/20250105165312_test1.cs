@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projet1.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationName : Migration
+    public partial class test1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,6 +40,23 @@ namespace Projet1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Document", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Domiciliation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    idUtilisateur = table.Column<int>(type: "int", nullable: false),
+                    idDocument = table.Column<int>(type: "int", nullable: false),
+                    idAdresseDomiciliation = table.Column<int>(type: "int", nullable: false),
+                    DateDebut = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateFin = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Domiciliation", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,68 +128,6 @@ namespace Projet1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Domiciliation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DateDebut = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateFin = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    FactureId = table.Column<int>(type: "int", nullable: false),
-                    DocumentId = table.Column<int>(type: "int", nullable: false),
-                    EntrepriseId = table.Column<int>(type: "int", nullable: false),
-                    AdresseDomiciliationId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Domiciliation", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Domiciliation_Adresse_AdresseDomiciliationId",
-                        column: x => x.AdresseDomiciliationId,
-                        principalTable: "Adresse",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Domiciliation_Document_DocumentId",
-                        column: x => x.DocumentId,
-                        principalTable: "Document",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Domiciliation_Entreprise_EntrepriseId",
-                        column: x => x.EntrepriseId,
-                        principalTable: "Entreprise",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Domiciliation_Facture_FactureId",
-                        column: x => x.FactureId,
-                        principalTable: "Facture",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Domiciliation_AdresseDomiciliationId",
-                table: "Domiciliation",
-                column: "AdresseDomiciliationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Domiciliation_DocumentId",
-                table: "Domiciliation",
-                column: "DocumentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Domiciliation_EntrepriseId",
-                table: "Domiciliation",
-                column: "EntrepriseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Domiciliation_FactureId",
-                table: "Domiciliation",
-                column: "FactureId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Entreprise_AdresseEId",
                 table: "Entreprise",
@@ -193,16 +148,16 @@ namespace Projet1.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Domiciliation");
-
-            migrationBuilder.DropTable(
-                name: "Utilisateur");
-
-            migrationBuilder.DropTable(
                 name: "Document");
 
             migrationBuilder.DropTable(
+                name: "Domiciliation");
+
+            migrationBuilder.DropTable(
                 name: "Facture");
+
+            migrationBuilder.DropTable(
+                name: "Utilisateur");
 
             migrationBuilder.DropTable(
                 name: "Entreprise");
