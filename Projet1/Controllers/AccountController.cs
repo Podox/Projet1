@@ -48,6 +48,9 @@ public class AccountController : Controller
 
         if (utilisateur != null)
         {
+            // Store user ID or any relevant data in the session
+            HttpContext.Session.SetString("UserEmail", utilisateur.Email);
+
             return RedirectToAction("Index", "Home");
         }
         else
@@ -55,5 +58,13 @@ public class AccountController : Controller
             ModelState.AddModelError("", "Invalid email or password.");
             return View("~/Views/Account/Login.cshtml");  // Specify the full path
         }
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Clear(); // Clear all session data
+        return RedirectToAction("Login", "Account");
     }
 }
