@@ -7,6 +7,7 @@
         public string? Ville { get; set; }
         public string? CodePostal { get; set; }
         public string? Pays { get; set; }
+        public int? etat { get; set; }
     }
-}
 
+}

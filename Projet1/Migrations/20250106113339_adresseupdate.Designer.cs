@@ -12,8 +12,8 @@ using Projet1.Data;
 namespace Projet1.Migrations
 {
     [DbContext(typeof(Projet1Context))]
-    [Migration("20250105165312_test1")]
-    partial class test1
+    [Migration("20250106113339_adresseupdate")]
+    partial class adresseupdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,9 @@ namespace Projet1.Migrations
 
                     b.Property<string>("Ville")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("etat")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

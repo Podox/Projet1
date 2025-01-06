@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projet1.Migrations
 {
     /// <inheritdoc />
-    public partial class test1 : Migration
+    public partial class adresseupdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,8 @@ namespace Projet1.Migrations
                     Rue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ville = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CodePostal = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Pays = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Pays = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    etat = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

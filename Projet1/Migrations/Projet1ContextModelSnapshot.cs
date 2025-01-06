@@ -42,6 +42,9 @@ namespace Projet1.Migrations
                     b.Property<string>("Ville")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("etat")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Adresse");
