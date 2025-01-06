@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Entreprise et Domiciliations";
+}
+
+<h2>Votre Entreprise</h2>
+
+<div>
+    <h3>@ViewBag.Entreprise.Nom</h3>
+    <p>Adresse: @ViewBag.Entreprise.Adresse.Rue, @ViewBag.Entreprise.Adresse.Ville</p>
+    <p>Téléphone: @ViewBag.Entreprise.Telephone</p>
+</div>
+
+<h2>Vos Domiciliations</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date Début</th>
+            <th>Date Fin</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var domiciliation in ViewBag.Domiciliations)
+        {
+            <tr>
+                <td>@domiciliation.Id</td>
+                <td>@domiciliation.DateDebut.ToShortDateString()</td>
+                <td>@domiciliation.DateFin?.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

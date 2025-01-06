@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Demande Domiciliation";
+}
+
+<h2>Demande de Domiciliation</h2>
+
+<form asp-action="CreateEntreprise" method="post">
+    <label for="Nom">Nom de l'entreprise:</label>
+    <input type="text" id="Nom" name="Nom" required />
+
+    <label for="AdresseEId">Adresse:</label>
+    <select id="AdresseEId" name="AdresseEId" required>
+        @foreach (var address in ViewBag.Addresses)
+        {
+            <option value="@address.Id">@address.Rue, @address.Ville</option>
+        }
+    </select>
+
+    <label for="Telephone">Téléphone:</label>
+    <input type="text" id="Telephone" name="Telephone" required />
+
+    <button type="submit">Créer l'entreprise</button>
+</form>
